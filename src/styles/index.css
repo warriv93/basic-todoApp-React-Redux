@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+#addTodoBtn {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1%;
+}
+.ul {
+
+}
+.list-group-item {
+    display: inline-block;
+    width: 95%;
+}
+
+.list-group-item div:first-child {
+    display: block;
+    float: left;
+    width: 75%;
+}
+
+.list-group-item div:last-child {
+    display: block;
+    float: right;
+    width: 20%;
+}
+
+.list-group-item button {
+    width: 100%;
+}
