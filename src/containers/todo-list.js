@@ -3,46 +3,48 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 //make component aware of store (smart component or container)
 import {connect} from 'react-redux';
-import {selectTodo, addTodo} from '../actions';
+import {selectTodo, deleteTodo, modifyTodo, addTodo} from '../actions';
 
 class Todolist extends Component {
     addTodoItem () {
-        let activity = "play fotboll"
+        let activity;
+        // activity = "play fotboll"
         this.props.addTodo(activity);
     }
 
-    todoItemClicked (todo) {
-        this.props.selectTodo(todo);
-        console.log("item " + todo.id +" clicked")
-
-    }
+    // todoItemClicked (todo) {
+    //     this.props.selectTodo(todo);
+    //     console.log("item " + todo.id +" clicked")
+    //
+    // }
 
     modifyTodoItem (todo) {
-        this.props.selectTodo(todo);
+        this.props.modifyTodo(todo.id);
         console.log("item " + todo.id +" clicked")
 
     }
 
-    deleteTodoItem(todo) {
-        this.props.selectTodo(todo);
-        console.log("item " + todo.id +" clicked")
+    deleteTodoItem(id) {
+        this.props.deleteTodo(id);
+        console.log("item " + id +" clicked")
     }
 
 // function(todo){} =samma sak som= (todo)=>{}
     loadListItems () {
-        //render list reversed
-        return this.props.todos.reverse().map( (todo) =>{
+        //render list reversed ( this.props.todos.reverse().map )
+        return this.props.todos.map( (todo) =>{
             return (
                 <li className="list-group-item" key={todo.id}
-                onClick={()=>{this.todoItemClicked(todo)}}
+                // onClick={()=>{this.todoItemClicked(todo)}}
                 >
+
                     <div>
                         <p>{todo.date}</p>
                         <p>{todo.activity}</p>
                     </div>
                     <div>
                         <button className="btn btn-danger"
-                            onClick={()=>this.deleteTodoItem(todo)}
+                            onClick={()=>this.deleteTodoItem(todo.id)}
                             >
                             Delete
                         </button>
@@ -52,6 +54,7 @@ class Todolist extends Component {
                             Modify
                         </button>
                     </div>
+
                 </li>
             )
         });
@@ -63,7 +66,7 @@ class Todolist extends Component {
                 <button id="addTodoBtn" className="btn btn-success"
                     onClick={ ()=> this.addTodoItem() }
                     >
-                     Add new Todo
+                     Add random Todo
                 </button>
                 <ul className="ul">
                     {this.loadListItems()}
@@ -76,7 +79,7 @@ class Todolist extends Component {
 //takes state (piece of my store data) and passes in into the component as a property
 function mapStateToProps(store) {
     return {
-        todos: store.todos.items
+        todos: store.todoList.todos
     };
 }
 
@@ -85,6 +88,8 @@ function matchDispatchToProps(dispatch){
     return bindActionCreators(
         {
             selectTodo: selectTodo,
+            deleteTodo: deleteTodo,
+            modifyTodo: modifyTodo,
             addTodo: addTodo
         }, dispatch);
 }

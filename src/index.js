@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import './styles/index.css';
 import App from './components/App';
 import allReducers from './reducers/index';
 
-// the brain holding the data
-const store = createStore(allReducers);
-console.log(" Store state ",store.getState())
+
+const middleware = applyMiddleware(thunk, logger());
+// the brain holding the data½
+const store = createStore(allReducers, middleware);
+
 //render the DOM
 // include different Components
 ReactDOM.render(
