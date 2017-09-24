@@ -17,11 +17,21 @@ class Todolist extends Component {
     //     console.log("item " + todo.id +" clicked")
     //
     // }
+    inputTest() {
+        <div >
+            <input> todo.activity </input>
+        </div>
+    }
 
     modifyTodoItem (todo) {
-        this.props.modifyTodo(todo.id);
+        //this.props.modifyTodo(todo.id);
         console.log("item " + todo.id +" clicked")
+        return (
+            <div >
+                {this.inputTest()}
 
+            </div>
+        )
     }
 
     deleteTodoItem(id) {
@@ -34,28 +44,30 @@ class Todolist extends Component {
         //render list reversed ( this.props.todos.reverse().map )
         return this.props.todos.map( (todo) =>{
             return (
-                <li className="list-group-item" key={todo.id}
-                // onClick={()=>{this.todoItemClicked(todo)}}
-                >
 
-                    <div>
-                        <p>{todo.date}</p>
-                        <p>{todo.activity}</p>
-                    </div>
-                    <div>
-                        <button className="btn btn-danger"
-                            onClick={()=>this.deleteTodoItem(todo.id)}
-                            >
-                            Delete
-                        </button>
-                        <button className="btn btn-warning"
-                            onClick={()=>this.modifyTodoItem(todo)}
-                            >
-                            Modify
-                        </button>
-                    </div>
+                    <li className="list-group-item" key={todo.id}
+                    // onClick={()=>{this.todoItemClicked(todo)}}
+                    >
 
-                </li>
+                        <div>
+                            <p>{todo.date}</p>
+                            <p>{todo.activity}</p>
+                        </div>
+                        <div>
+                            <button className="btn btn-danger"
+                                onClick={()=>this.deleteTodoItem(todo.id)}
+                                >
+                                Delete
+                            </button>
+                            <button className="btn btn-warning"
+                                onClick={()=>this.modifyTodoItem(todo)}
+                                >
+                                Modify
+                            </button>
+                        </div>
+
+                    </li>
+
             )
         });
     }

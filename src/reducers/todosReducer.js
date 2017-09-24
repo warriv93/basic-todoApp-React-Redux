@@ -77,11 +77,11 @@ const initialState = {
                     ...state.todos
                 ]
             })
-            for (var i = 0; i < newState.todos.length; i++) {
-                if (newState.todos[i].id === action.payload) {
-                    newState.todos[i] = {
+            for (var j = 0; j < newState.todos.length; j++) {
+                if (newState.todos[j].id === action.payload) {
+                    newState.todos[j] = {
                         "activity" : "gg",
-                         "date" : "00:00" 
+                         "date" : "00:00"
                     }
                     break;
                 }
